@@ -26,8 +26,8 @@ public class SpreadsheetView extends Composite implements SpreadsheetPresenter.V
     @UiField
     HTMLPanel main;
     private SpreadsheetCellTableProvider cellTableProvider;
-    private SimplePager.Resources pagerResources;
     private SpreadsheetUiHandler uiHandler;
+    private SimplePager pager;
 
     public interface Binder extends UiBinder<HTMLPanel, SpreadsheetView> {
     }
@@ -35,11 +35,12 @@ public class SpreadsheetView extends Composite implements SpreadsheetPresenter.V
     @Inject
     public SpreadsheetView(Binder binder, SpreadsheetCellTableProvider cellTableProvider, SimplePager.Resources pagerResources) {
         this.cellTableProvider = cellTableProvider;
-        this.pagerResources = pagerResources;
+        pager = new SimplePager(SimplePager.TextLocation.CENTER, pagerResources, false, 0, true);
         initWidget(binder.createAndBindUi(this));
     }
 
     public void render(List<SpreadSheetRow> rows, List<SpreadsheetColumn> columns) {
+        int page = pager.getPage();
         main.clear();
         CellTable<SpreadSheetRow> cellTable = cellTableProvider.create(columns, uiHandler);
 
@@ -48,9 +49,8 @@ public class SpreadsheetView extends Composite implements SpreadsheetPresenter.V
             cellTable.setColumnWidth(cellTable.getColumn(i), WIDTH, Style.Unit.PX);
         }
 
-        SimplePager pager = new SimplePager(SimplePager.TextLocation.CENTER, pagerResources, false, 0, true);
         pager.setDisplay(cellTable);
-
+        pager.setPage(page == -1 ? 0 : page);
         ListDataProvider<SpreadSheetRow> dataProvider = new ListDataProvider<SpreadSheetRow>(rows);
         dataProvider.addDataDisplay(cellTable);
 

@@ -60,24 +60,6 @@
             <version>1.5</version>
         </dependency>
 
-        <!-- J2EE Servlet API. We need it to compile IndexServlet class. You can probably remove
- it, if you don't explicitly use Servlets -->
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-servlet_2.5_spec</artifactId>
-            <version>1.2</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- Make use of JSP tags. Remove, if you don't use JSPs -->
-        <dependency>
-            <artifactId>standard</artifactId>
-            <groupId>taglibs</groupId>
-            <version>1.1.2</version>
-            <type>jar</type>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- Test scope -->
         <dependency>
             <groupId>junit</groupId>
@@ -230,14 +212,6 @@
                 </dependencies>
             </plugin>
 
-            <!-- Upload application to the appspot automatically, during release:perform -->
-            <plugin>
-                <artifactId>maven-release-plugin</artifactId>
-                <configuration>
-                    <goals>gae:deploy</goals>
-                </configuration>
-            </plugin>
-
             <!-- Java compiler version -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -269,7 +243,7 @@ by ${gae.home} property (Typically, one used by your Eclipse plug-in) -->
         <gwt.version>2.2.0</gwt.version>
 
         <!-- Upload to http://test.latest.<applicationName>.appspot.com by default -->
-        <gae.application.version>test</gae.application.version>
+        <gae.application.version>1.0</gae.application.version>
 
         <!-- port defaults to 8080 -->
         <gae.port>8080</gae.port>
