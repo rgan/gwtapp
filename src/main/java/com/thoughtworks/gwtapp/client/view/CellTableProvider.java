@@ -1,12 +1,12 @@
 package com.thoughtworks.gwtapp.client.view;
 
 import com.google.gwt.cell.client.TextInputCell;
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.inject.Inject;
 import com.thoughtworks.gwtapp.client.model.SpreadSheetRow;
-import com.thoughtworks.gwtapp.client.model.Spreadsheet;
 import com.thoughtworks.gwtapp.client.model.SpreadsheetColumn;
+
+import java.util.List;
 
 public class CellTableProvider {
 
@@ -19,9 +19,9 @@ public class CellTableProvider {
     }
 
 
-    public CellTable<SpreadSheetRow> create(Spreadsheet spreadsheet) {
+    public CellTable<SpreadSheetRow> create(List<SpreadsheetColumn> columns) {
 
-        for (final SpreadsheetColumn column : spreadsheet.columns()) {
+        for (final SpreadsheetColumn column : columns) {
             SortableTextColumn<SpreadSheetRow> sortableTextColumn = new SortableTextColumn<SpreadSheetRow>(new TextInputCell()) {
                 @Override
                 public String getValue(SpreadSheetRow row) {

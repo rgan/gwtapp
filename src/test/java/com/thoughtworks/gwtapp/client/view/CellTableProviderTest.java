@@ -29,7 +29,7 @@ public class CellTableProviderTest {
         CellTableProvider cellTableProvider = new CellTableProvider(cellTable);
         Spreadsheet spreadSheet = new Spreadsheet();
         spreadSheet.addColumn("name", SpreadsheetColumn.Type.TEXT);
-        cellTableProvider.create(spreadSheet);
+        cellTableProvider.create(spreadSheet.columns());
         verify(cellTable).addColumn(isA(SortableTextColumn.class), eq("name"));
     }
 }

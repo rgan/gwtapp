@@ -24,6 +24,6 @@ public class SpreadsheetPresenterTest {
         Spreadsheet model = new Spreadsheet();
         presenter.go(model);
 
-        verify(view).render(model);
+        verify(view).render(model.rows(), model.columns());
     }
 }
