@@ -1,0 +1,4 @@
+Simple GWT application that renders a spreadsheet allowing hide/unhide columns (right-click on any cell).
+Illustrates MVP pattern, use of GIN for dependency injection and unit-testing.
+
+To run the app locally: mvn gae:run
