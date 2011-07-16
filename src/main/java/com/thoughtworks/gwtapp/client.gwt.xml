@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="client">
+    <inherits name="com.google.gwt.user.User" />
+    <inherits name="com.google.gwt.user.theme.standard.Standard" />
+
+    <inherits name="com.google.gwt.inject.Inject"/>
+
+    <source path="client"/>
+
+    <entry-point class="com.thoughtworks.gwtapp.client.Main" />
+
+    <set-property name="user.agent" value="gecko1_8"/>
+</module>
