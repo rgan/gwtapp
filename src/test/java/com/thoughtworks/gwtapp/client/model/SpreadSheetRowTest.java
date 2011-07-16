@@ -11,6 +11,6 @@ public class SpreadSheetRowTest {
         SpreadSheetRow row = new SpreadSheetRow(1);
         SpreadsheetColumn column = new SpreadsheetColumn("name", SpreadsheetColumn.Type.TEXT);
         row.setColumnValue(column, "foo");
-        assertEquals("foo", row.getColumnValue(column));
+        assertEquals("foo", row.getColumnValue(column).getValue());
     }
 }

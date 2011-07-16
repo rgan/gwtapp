@@ -22,7 +22,7 @@ public class Main implements EntryPoint {
     @Override
     public void onModuleLoad() {
 
-        Spreadsheet spreadsheet = createSpreadsheet(100, 100);
+        Spreadsheet spreadsheet = createSpreadsheet(10, 10);
 
         SpreadsheetPresenter spreadsheetPresenter = injector.getSpreadsheetPresenter();
         spreadsheetPresenter.go(spreadsheet);

@@ -7,26 +7,20 @@ import java.util.Map;
 
 public class SpreadSheetRow {
 
-    private Map<String, String> columnMap;
+    private Map<String, SpreadsheetCell> columnMap;
     private Integer id;
-
-    public static final ProvidesKey<SpreadSheetRow> KEY_PROVIDER = new ProvidesKey<SpreadSheetRow>() {
-        public Object getKey(SpreadSheetRow item) {
-            return item == null ? null : item.getId();
-        }
-    };
 
     public SpreadSheetRow(Integer id) {
         this.id = id;
-        columnMap = new HashMap<String, String>();
+        columnMap = new HashMap<String, SpreadsheetCell>();
     }
 
-    public String getColumnValue(SpreadsheetColumn column) {
+    public SpreadsheetCell getColumnValue(SpreadsheetColumn column) {
         return columnMap.get(column.getName());
     }
 
     public void setColumnValue(SpreadsheetColumn column, String value) {
-        columnMap.put(column.getName(), value);
+        columnMap.put(column.getName(), new SpreadsheetCell(column, value));
     }
 
     public Integer getId() {

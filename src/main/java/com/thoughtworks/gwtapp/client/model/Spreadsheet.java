@@ -1,7 +1,5 @@
 package com.thoughtworks.gwtapp.client.model;
 
-import com.google.gwt.view.client.ListDataProvider;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,5 +28,11 @@ public class Spreadsheet {
 
     public void addRow(SpreadSheetRow row) {
         rows.add(row);
+    }
+
+    public void unHideAllColumns() {
+        for (SpreadsheetColumn column : columns) {
+            column.unHide();
+        }
     }
 }
