@@ -1,5 +1,7 @@
 package com.thoughtworks.gwtapp.client.model;
 
+import com.google.gwt.view.client.ListDataProvider;
+
 import java.util.ArrayList;
 import java.util.List;
 
