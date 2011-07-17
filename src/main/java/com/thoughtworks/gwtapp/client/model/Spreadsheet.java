@@ -8,7 +8,11 @@ public class Spreadsheet {
     private List<SpreadSheetRow> rows;
 
     public Spreadsheet() {
-        this.columns = new ArrayList<SpreadsheetColumn>();
+        this(new ArrayList<SpreadsheetColumn>());
+    }
+
+    public Spreadsheet(List<SpreadsheetColumn> columns) {
+        this.columns = columns;
         rows = new ArrayList<SpreadSheetRow>();
     }
 
@@ -33,6 +37,14 @@ public class Spreadsheet {
     public void unHideAllColumns() {
         for (SpreadsheetColumn column : columns) {
             column.unHide();
+        }
+    }
+
+    public void hideColumn(SpreadsheetColumn column) {
+        for (SpreadsheetColumn spreadsheetColumn : columns) {
+            if (spreadsheetColumn.equals(column)) {
+                spreadsheetColumn.hide();
+            }
         }
     }
 }

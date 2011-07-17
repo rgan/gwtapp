@@ -11,11 +11,11 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.view.client.ListDataProvider;
 import com.google.inject.Inject;
 import com.thoughtworks.gwtapp.client.model.SpreadSheetRow;
 import com.thoughtworks.gwtapp.client.model.SpreadsheetCell;
 import com.thoughtworks.gwtapp.client.model.SpreadsheetColumn;
+import com.thoughtworks.gwtapp.client.presenter.SpreadsheetDataProvider;
 import com.thoughtworks.gwtapp.client.presenter.SpreadsheetPresenter;
 import com.thoughtworks.gwtapp.client.presenter.SpreadsheetUiHandler;
 
@@ -26,6 +26,7 @@ public class SpreadsheetView extends Composite implements SpreadsheetPresenter.V
     @UiField
     HTMLPanel main;
     private SpreadsheetCellTableProvider cellTableProvider;
+    private SpreadsheetDataProvider dataProvider;
     private SpreadsheetUiHandler uiHandler;
     private SimplePager pager;
 
@@ -33,13 +34,15 @@ public class SpreadsheetView extends Composite implements SpreadsheetPresenter.V
     }
 
     @Inject
-    public SpreadsheetView(Binder binder, SpreadsheetCellTableProvider cellTableProvider, SimplePager.Resources pagerResources) {
+    public SpreadsheetView(Binder binder, SpreadsheetCellTableProvider cellTableProvider,
+                           SimplePager.Resources pagerResources, SpreadsheetDataProvider dataProvider) {
         this.cellTableProvider = cellTableProvider;
+        this.dataProvider = dataProvider;
         pager = new SimplePager(SimplePager.TextLocation.CENTER, pagerResources, false, 0, true);
         initWidget(binder.createAndBindUi(this));
     }
 
-    public void render(List<SpreadSheetRow> rows, List<SpreadsheetColumn> columns) {
+    public void render(List<SpreadsheetColumn> columns, int total) {
         int page = pager.getPage();
         main.clear();
         CellTable<SpreadSheetRow> cellTable = cellTableProvider.create(columns, uiHandler);
@@ -51,8 +54,9 @@ public class SpreadsheetView extends Composite implements SpreadsheetPresenter.V
 
         pager.setDisplay(cellTable);
         pager.setPage(page == -1 ? 0 : page);
-        ListDataProvider<SpreadSheetRow> dataProvider = new ListDataProvider<SpreadSheetRow>(rows);
+
         dataProvider.addDataDisplay(cellTable);
+        dataProvider.updateRowCount(total, true);
 
         main.add(cellTable);
         main.add(pager);

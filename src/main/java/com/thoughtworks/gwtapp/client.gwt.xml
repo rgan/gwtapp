@@ -9,5 +9,5 @@
 
     <entry-point class="com.thoughtworks.gwtapp.client.Main" />
 
-    <set-property name="user.agent" value="gecko1_8"/>
+    <!--<set-property name="user.agent" value="gecko1_8"/>-->
 </module>
